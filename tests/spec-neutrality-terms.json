@@ -1,0 +1,16 @@
+{
+  "additional_partner_names": [
+    "Amazon",
+    "ApnaComplex",
+    "BlueDart",
+    "Jio",
+    "Meesho",
+    "NoBroker"
+  ],
+  "proprietary_terms": [
+    {
+      "term": "Dasher",
+      "owner": "doordash.com"
+    }
+  ]
+}

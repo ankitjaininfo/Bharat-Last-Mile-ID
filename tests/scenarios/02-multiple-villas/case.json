@@ -1,0 +1,78 @@
+{
+  "id": "02-multiple-villas",
+  "title": "Courier batch for multiple villas",
+  "description": "Asha Singh presents one pass for three courier deliveries inside Green Acres Villa Community in Pune. The deliveries target units 13A, 13B, and Lake House.",
+  "verification_time": 1893457200,
+  "header": {
+    "alg": "ES256",
+    "kid": "test-key-01",
+    "typ": "lmid+jwt"
+  },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893499200,
+    "jti": "pass_villas_002",
+    "lmid": {
+      "v": 1,
+      "holder": {
+        "name": "Asha Singh"
+      },
+      "vehicle": {
+        "registration": "MH-12-XY-9876",
+        "country": "IN"
+      },
+      "visit": {
+        "place": {
+          "name": "Green Acres Villa Community",
+          "address": "Green Acres Villa Community, Phase 2, Baner, Pune 411045",
+          "country": "IN",
+          "state": "Maharashtra",
+          "district": "Pune",
+          "city": "Pune",
+          "area": "Baner",
+          "postal_code": "411045"
+        },
+        "deliveries": [
+          {
+            "ref": "AWB-PNQ-2026-0013A",
+            "block": "Phase 2",
+            "unit": "13A"
+          },
+          {
+            "ref": "AWB-PNQ-2026-0013B",
+            "block": "Phase 2",
+            "unit": "13B"
+          },
+          {
+            "ref": "AWB-PNQ-2026-LAKE1",
+            "block": "Phase 2",
+            "unit": "Lake House"
+          }
+        ]
+      }
+    }
+  },
+  "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6InRlc3Qta2V5LTAxIiwidHlwIjoibG1pZCtqd3QifQ.eyJpc3MiOiJpc3N1ZXIuZXhhbXBsZSIsImlhdCI6MTg5MzQ1NjAwMCwibmJmIjoxODkzNDU2MDAwLCJleHAiOjE4OTM0OTkyMDAsImp0aSI6InBhc3NfdmlsbGFzXzAwMiIsImxtaWQiOnsidiI6MSwiaG9sZGVyIjp7Im5hbWUiOiJBc2hhIFNpbmdoIn0sInZlaGljbGUiOnsicmVnaXN0cmF0aW9uIjoiTUgtMTItWFktOTg3NiIsImNvdW50cnkiOiJJTiJ9LCJ2aXNpdCI6eyJwbGFjZSI6eyJuYW1lIjoiR3JlZW4gQWNyZXMgVmlsbGEgQ29tbXVuaXR5IiwiYWRkcmVzcyI6IkdyZWVuIEFjcmVzIFZpbGxhIENvbW11bml0eSwgUGhhc2UgMiwgQmFuZXIsIFB1bmUgNDExMDQ1IiwiY291bnRyeSI6IklOIiwic3RhdGUiOiJNYWhhcmFzaHRyYSIsImRpc3RyaWN0IjoiUHVuZSIsImNpdHkiOiJQdW5lIiwiYXJlYSI6IkJhbmVyIiwicG9zdGFsX2NvZGUiOiI0MTEwNDUifSwiZGVsaXZlcmllcyI6W3sicmVmIjoiQVdCLVBOUS0yMDI2LTAwMTNBIiwiYmxvY2siOiJQaGFzZSAyIiwidW5pdCI6IjEzQSJ9LHsicmVmIjoiQVdCLVBOUS0yMDI2LTAwMTNCIiwiYmxvY2siOiJQaGFzZSAyIiwidW5pdCI6IjEzQiJ9LHsicmVmIjoiQVdCLVBOUS0yMDI2LUxBS0UxIiwiYmxvY2siOiJQaGFzZSAyIiwidW5pdCI6Ikxha2UgSG91c2UifV19fX0.0XzkxziB6ZRPVp0qgAJDaKTGkMtirJiwuTSitNygYgkp--BXjLcQNEU8pnVgO4vUDTuXvCjc5ZUJEf9tg8WJqg",
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 3,
+    "holder_name": "Asha Singh",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      {
+        "block": "Phase 2",
+        "unit": "13A"
+      },
+      {
+        "block": "Phase 2",
+        "unit": "13B"
+      },
+      {
+        "block": "Phase 2",
+        "unit": "Lake House"
+      }
+    ]
+  }
+}

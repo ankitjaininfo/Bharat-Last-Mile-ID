@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bharat-last-mile-id:schema:place-id-provider-registry:1",
+  "title": "Bharat Last-Mile ID Place-ID Provider Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "providers"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "version": { "const": 1 },
+    "providers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/provider" }
+    }
+  },
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "domain", "id_description", "example", "status", "source_urls"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "domain": { "type": "string", "pattern": "^[a-z0-9.-]+$" },
+        "id_description": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "example": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "pattern": { "type": ["string", "null"] },
+        "status": { "enum": ["proposed", "active", "deprecated"] },
+        "source_urls": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "format": "uri", "pattern": "^https://" }
+        },
+        "notes": { "type": "string", "maxLength": 1024 }
+      }
+    }
+  }
+}

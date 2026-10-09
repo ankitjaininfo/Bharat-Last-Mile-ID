@@ -1,0 +1,35 @@
+{
+  "iss": "issuer.example",
+  "iat": 1788260400,
+  "nbf": 1788260400,
+  "exp": 1788263100,
+  "jti": "p_7P2kN9mQ4x",
+  "lmid": {
+    "v": 1,
+    "holder": {
+      "name": "Ramesh Kumar"
+    },
+    "vehicle": {
+      "registration": "KA01AB1234",
+      "country": "IN"
+    },
+    "visit": {
+      "place": {
+        "name": "Prestige Shantiniketan",
+        "address": "Prestige Shantiniketan, Whitefield, Bengaluru 560048",
+        "country": "IN",
+        "state": "Karnataka",
+        "city": "Bengaluru",
+        "area": "Whitefield",
+        "postal_code": "560048"
+      },
+      "deliveries": [
+        {
+          "ref": "ORDER-BLR-2026-0001",
+          "building": "Tower C",
+          "unit": "1204"
+        }
+      ]
+    }
+  }
+}

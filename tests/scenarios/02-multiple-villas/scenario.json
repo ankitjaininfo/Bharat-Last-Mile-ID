@@ -1,0 +1,47 @@
+{
+  "id": "02-multiple-villas",
+  "title": "Courier batch for multiple villas",
+  "description": "Asha Singh presents one pass for three courier deliveries inside Green Acres Villa Community in Pune. The deliveries target units 13A, 13B, and Lake House.",
+  "verification_time": 1893457200,
+  "header": { "alg": "ES256", "kid": "test-key-01", "typ": "lmid+jwt" },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893499200,
+    "jti": "pass_villas_002",
+    "lmid": {
+      "v": 1,
+      "holder": { "name": "Asha Singh" },
+      "vehicle": { "registration": "MH-12-XY-9876", "country": "IN" },
+      "visit": {
+        "place": {
+          "name": "Green Acres Villa Community",
+          "address": "Green Acres Villa Community, Phase 2, Baner, Pune 411045",
+          "country": "IN",
+          "state": "Maharashtra",
+          "district": "Pune",
+          "city": "Pune",
+          "area": "Baner",
+          "postal_code": "411045"
+        },
+        "deliveries": [
+          { "ref": "AWB-PNQ-2026-0013A", "block": "Phase 2", "unit": "13A" },
+          { "ref": "AWB-PNQ-2026-0013B", "block": "Phase 2", "unit": "13B" },
+          { "ref": "AWB-PNQ-2026-LAKE1", "block": "Phase 2", "unit": "Lake House" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 3,
+    "holder_name": "Asha Singh",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      { "block": "Phase 2", "unit": "13A" },
+      { "block": "Phase 2", "unit": "13B" },
+      { "block": "Phase 2", "unit": "Lake House" }
+    ]
+  }
+}

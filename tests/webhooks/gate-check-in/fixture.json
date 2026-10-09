@@ -1,0 +1,68 @@
+{
+  "id": "gate-check-in-webhook",
+  "title": "Signed gate check-in webhook",
+  "description": "A verifier reports that it validated one LMID pass covering two deliveries at a security checkpoint.",
+  "request": {
+    "method": "POST",
+    "authority": "events.issuer.example",
+    "path": "/lmid/v1/events",
+    "headers": {
+      "content-type": "application/cloudevents+json",
+      "content-digest": "sha-256=:xmlBrfb2w2UnBnXoCiQFveSuBJuPCz/6VD8vpvaoYDU=:",
+      "signature-input": "lmid=(\"@method\" \"@authority\" \"@path\" \"content-type\" \"content-digest\");created=1893456662;expires=1893456962;keyid=\"test-key-01\";tag=\"lmid-gate-check-in\"",
+      "signature": "lmid=:0cKtFGhPND6wGe+QLxkT33SmmKtQlo4HBsGqY0ytzCDcoMkK/4IFDyN0/IuXhP+uucy6h9/x4kqYJIOtOJaB6A==:"
+    },
+    "body": "{\"specversion\":\"1.0\",\"id\":\"event_gate_01JQ9X7K3W5P8M2R\",\"source\":\"https://verifier.example\",\"type\":\"gate_check_in\",\"time\":\"2030-01-01T00:10:58Z\",\"datacontenttype\":\"application/json\",\"data\":{\"pass_jti\":\"pass_batch_009\",\"deliveries\":[{\"ref\":\"AWB-DEL-2030-0001\"},{\"ref\":\"AWB-DEL-2030-0002\"}]}}"
+  },
+  "signature_base": "\"@method\": POST\n\"@authority\": events.issuer.example\n\"@path\": /lmid/v1/events\n\"content-type\": application/cloudevents+json\n\"content-digest\": sha-256=:xmlBrfb2w2UnBnXoCiQFveSuBJuPCz/6VD8vpvaoYDU=:\n\"@signature-params\": (\"@method\" \"@authority\" \"@path\" \"content-type\" \"content-digest\");created=1893456662;expires=1893456962;keyid=\"test-key-01\";tag=\"lmid-gate-check-in\"",
+  "event": {
+    "specversion": "1.0",
+    "id": "event_gate_01JQ9X7K3W5P8M2R",
+    "source": "https://verifier.example",
+    "type": "gate_check_in",
+    "time": "2030-01-01T00:10:58Z",
+    "datacontenttype": "application/json",
+    "data": {
+      "pass_jti": "pass_batch_009",
+      "deliveries": [
+        {
+          "ref": "AWB-DEL-2030-0001"
+        },
+        {
+          "ref": "AWB-DEL-2030-0002"
+        }
+      ]
+    }
+  },
+  "source_metadata": {
+    "domain": "verifier.example",
+    "display_name": "Example Gate Systems",
+    "roles": [
+      "verifier"
+    ],
+    "jwks_uri": "https://verifier.example/.well-known/bharat-last-mile-id.jwks",
+    "versions_supported": [
+      1
+    ]
+  },
+  "receiver_metadata": {
+    "domain": "issuer.example",
+    "display_name": "Example Logistics",
+    "roles": [
+      "issuer"
+    ],
+    "jwks_uri": "https://issuer.example/.well-known/bharat-last-mile-id.jwks",
+    "versions_supported": [
+      1
+    ],
+    "token_types_supported": [
+      "lmid+jwt"
+    ],
+    "event_receiver": {
+      "uri": "https://events.issuer.example/lmid/v1/events",
+      "types_supported": [
+        "gate_check_in"
+      ]
+    }
+  }
+}

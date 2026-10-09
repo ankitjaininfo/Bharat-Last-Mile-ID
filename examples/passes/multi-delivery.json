@@ -1,0 +1,45 @@
+{
+  "iss": "issuer.example",
+  "iat": 1788260400,
+  "nbf": 1788260400,
+  "exp": 1788264000,
+  "jti": "p_batch_92ksL1",
+  "lmid": {
+    "v": 1,
+    "holder": {
+      "name": "Asha Singh"
+    },
+    "vehicle": {
+      "registration": "MH12XY9876",
+      "country": "IN"
+    },
+    "visit": {
+      "place": {
+        "name": "Green Acres Villa Community",
+        "address": "Green Acres Villa Community, Phase 2, Baner, Pune 411045",
+        "country": "IN",
+        "state": "Maharashtra",
+        "city": "Pune",
+        "area": "Baner",
+        "postal_code": "411045"
+      },
+      "deliveries": [
+        {
+          "ref": "AWB-PNQ-2026-0013A",
+          "block": "Phase 2",
+          "unit": "13A"
+        },
+        {
+          "ref": "AWB-PNQ-2026-0013B",
+          "block": "Phase 2",
+          "unit": "13B"
+        },
+        {
+          "ref": "AWB-PNQ-2026-LAKE1",
+          "block": "Phase 2",
+          "unit": "Lake House"
+        }
+      ]
+    }
+  }
+}

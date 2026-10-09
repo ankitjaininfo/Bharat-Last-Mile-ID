@@ -1,0 +1,32 @@
+{
+  "iss": "issuer.example",
+  "iat": 1788260400,
+  "nbf": 1788260400,
+  "exp": 1788263100,
+  "jti": "p_office_72kLm9",
+  "lmid": {
+    "v": 1,
+    "holder": {
+      "name": "Mohammed Irfan"
+    },
+    "visit": {
+      "place": {
+    "name": "Cyber Business Park",
+    "address": "Building 8, Cyber Business Park, DLF Phase 2, Gurugram 122002",
+        "country": "IN",
+        "state": "Haryana",
+        "city": "Gurugram",
+        "area": "DLF Phase 2",
+        "postal_code": "122002"
+      },
+      "deliveries": [
+        {
+          "ref": "SERVICE-GGN-2026-0001",
+          "building": "Building 8",
+          "floor": "12",
+          "unit": "Acme India Reception"
+        }
+      ]
+    }
+  }
+}

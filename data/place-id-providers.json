@@ -1,0 +1,56 @@
+{
+  "$schema": "../schemas/place-id-provider-registry.schema.json",
+  "version": 1,
+  "providers": [
+    {
+      "id": "google-places",
+      "name": "Google Places",
+      "domain": "maps.googleapis.com",
+      "id_description": "Opaque Google Maps Platform identifier for a place. LMID accepts identifiers of 1 to 256 characters without truncation.",
+      "example": "ChIJk1qMgACTyzsRmIKsCPIhMuM",
+      "pattern": null,
+      "status": "active",
+      "source_urls": ["https://developers.google.com/maps/documentation/places/web-service/place-id"],
+      "notes": "The agreed LMID provider slug is google-places. Google documents variable-length IDs without a maximum; LMID still limits this field to 256 characters. No fixed prefix or stable validation regex is assumed. IDs can change, and a place can have multiple IDs. Bind the ID to a local property record; it does not identify an internal building or flat by itself. Listing is parsing guidance, not Google participation in LMID or issuer trust."
+    },
+    {
+      "id": "digipin",
+      "name": "DIGIPIN",
+      "domain": "indiapost.gov.in",
+      "id_description": "Ten-character India Post coordinate-derived grid identifier. Separators used for display are not semantically significant.",
+      "example": "4FK59K2L3T",
+      "pattern": "^[23456789CJKLMPTF]{10}$",
+      "status": "proposed",
+      "source_urls": [
+        "https://www.indiapost.gov.in/VAS/Pages/digipin.aspx",
+        "https://www.indiapost.gov.in/VAS/DOP_PDFFiles/DIGIPIN%20Technical%20document.pdf"
+      ],
+      "notes": "Identifies a geographic grid cell, not a property, tower, floor, or unit. Example is illustrative and must be replaced by an accurately computed DIGIPIN in real passes."
+    },
+    {
+      "id": "openstreetmap",
+      "name": "OpenStreetMap",
+      "domain": "openstreetmap.org",
+      "id_description": "An OSM element type and positive integer ID, expressed as node/<id>, way/<id>, or relation/<id>.",
+      "example": "way/123456789",
+      "pattern": "^(node|way|relation)/[1-9][0-9]*$",
+      "status": "proposed",
+      "source_urls": [
+        "https://wiki.openstreetmap.org/wiki/Elements",
+        "https://wiki.openstreetmap.org/wiki/Using_OpenStreetMap_id_as_permanent_identifiers"
+      ],
+      "notes": "Element type is mandatory because OSM element types have separate ID spaces. OSM IDs are useful references but are not guaranteed permanent identity anchors."
+    },
+    {
+      "id": "what3words",
+      "name": "what3words",
+      "domain": "what3words.com",
+      "id_description": "A what3words address written as three lowercase words separated by dots, with the leading three slashes retained.",
+      "example": "///nation.jumper.stones",
+      "pattern": "^///[^.\\s]+\\.[^.\\s]+\\.[^.\\s]+$",
+      "status": "proposed",
+      "source_urls": ["https://developer.what3words.com/design/brand-writing"],
+      "notes": "Proprietary place-address provider. Implementers must follow the provider's current API, attribution, trademark, and licensing requirements."
+    }
+  ]
+}

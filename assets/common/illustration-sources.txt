@@ -1,0 +1,8 @@
+Delivery character: https://www.svgrepo.com/svg/70549/delivery-man-with-package
+License: CC0. Recolored and supplemented with a phone-holding arm.
+Guard character: https://uxwing.com/security-guard-icon/
+License: Free personal, commercial and client use without attribution. https://uxwing.com/license/
+Recolored and supplemented with a reader-holding arm.
+Characters located via Google Images.
+QR encodes LMID-DEMO for illustration only; it is not a live LMID credential.
+Automatic approval depicts the user-specified ADDA trust policy for Swiggy deliveries.

@@ -1,0 +1,39 @@
+{
+  "name": "bharat-last-mile-id",
+  "version": "1.0.0-draft.1",
+  "private": true,
+  "description": "Bharat Last-Mile ID Level 1 Draft specification and conformance fixtures",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "example:issue": "node examples/integration-real-world-example/swiggy-issuer.mjs",
+    "example:verify": "node examples/integration-real-world-example/adda-reader.mjs",
+    "test:example": "node --test tests/javascript-example.test.mjs",
+    "test": "npm run test:audit && npm run test:spec-neutrality && npm run test:schemas && npm run test:fixtures && npm run test:webhooks && npm run test:example && npm run lint",
+    "test:audit": "node tests/audit-repository.mjs",
+    "test:spec-neutrality": "node tests/check-spec-neutrality.mjs",
+    "test:schemas": "node tests/validate-schemas.mjs",
+    "test:fixtures": "node tests/verify-fixtures.mjs",
+    "test:webhooks": "node tests/verify-webhooks.mjs",
+    "lint": "npm run lint:markdown && npm run lint:spelling",
+    "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "lint:spelling": "cspell --config cspell.json \"**/*.{md,json,mjs}\"",
+    "fixtures:generate": "node tests/generate-fixtures.mjs"
+  },
+  "devDependencies": {
+    "ajv-formats": "3.0.1",
+    "cspell": "10.2.0",
+    "markdownlint-cli2": "0.23.2"
+  },
+  "dependencies": {
+    "@zxing/library": "0.21.3",
+    "ajv": "8.20.0",
+    "ipaddr.js": "2.5.0",
+    "jsonc-parser": "3.3.1",
+    "jsqr": "1.4.0",
+    "pngjs": "7.0.0",
+    "qrcode": "1.5.4"
+  }
+}

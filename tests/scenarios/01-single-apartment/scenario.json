@@ -1,0 +1,42 @@
+{
+  "id": "01-single-apartment",
+  "title": "Single food delivery to an apartment",
+  "description": "Ramesh Kumar presents one delivery for unit 1204 in Tower C of Lake View Residency in Bengaluru. The place contains the common society address; the delivery entry supplies Tower C as its building and 1204 as its unit.",
+  "verification_time": 1893456600,
+  "header": { "alg": "ES256", "kid": "test-key-01", "typ": "lmid+jwt" },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893461400,
+    "jti": "pass_single_001",
+    "lmid": {
+      "v": 1,
+      "holder": { "name": "Ramesh Kumar" },
+      "vehicle": { "registration": "KA 01 AB 1234", "country": "IN" },
+      "visit": {
+        "place": {
+          "name": "Lake View Residency",
+          "address": "Lake View Residency, Whitefield, Bengaluru 560066",
+          "country": "IN",
+          "state": "Karnataka",
+          "city": "Bengaluru",
+          "area": "Whitefield",
+          "postal_code": "560066"
+        },
+        "deliveries": [
+          { "ref": "ORDER-BLR-2026-0001", "building": "Tower C", "unit": "1204" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 1,
+    "holder_name": "Ramesh Kumar",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      { "building": "Tower C", "unit": "1204" }
+    ]
+  }
+}

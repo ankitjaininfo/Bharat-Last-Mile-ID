@@ -1,0 +1,16 @@
+{
+  "specversion": "1.0",
+  "id": "event_gate_01JQ9X7K3W5P8M2R",
+  "source": "https://verifier.example",
+  "type": "gate_check_in",
+  "time": "2030-01-01T00:10:58Z",
+  "datacontenttype": "application/json",
+  "data": {
+    "pass_jti": "pass_single_001",
+    "deliveries": [
+      {
+        "ref": "ORDER-BLR-2026-0001"
+      }
+    ]
+  }
+}

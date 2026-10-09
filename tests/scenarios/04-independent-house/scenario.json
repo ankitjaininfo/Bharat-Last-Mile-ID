@@ -1,0 +1,41 @@
+{
+  "id": "04-independent-house",
+  "title": "Delivery to an independent house with a building endpoint",
+  "description": "Meena Kumari carries one delivery to house 13B on 2nd Cross in Indiranagar, Bengaluru. The place carries the address context, and the delivery entry carries its AWB reference and 13B as its building endpoint.",
+  "verification_time": 1893456600,
+  "header": { "alg": "ES256", "kid": "test-key-01", "typ": "lmid+jwt" },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893461400,
+    "jti": "pass_house_004",
+    "lmid": {
+      "v": 1,
+      "holder": { "name": "Meena Kumari" },
+      "visit": {
+        "place": {
+          "address": "13B, 2nd Cross, Indiranagar, Bengaluru 560038",
+          "country": "IN",
+          "state": "Karnataka",
+          "city": "Bengaluru",
+          "area": "Indiranagar",
+          "street": "2nd Cross",
+          "postal_code": "560038"
+        },
+        "deliveries": [
+          { "ref": "AWB-BLR-2026-0013B", "building": "13B" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 1,
+    "holder_name": "Meena Kumari",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      { "building": "13B" }
+    ]
+  }
+}

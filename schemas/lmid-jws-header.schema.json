@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bharat-last-mile-id:schema:jws-header:1.0",
+  "title": "Bharat Last-Mile ID Level 1 JWS Protected Header",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["alg", "kid", "typ"],
+  "properties": {
+    "alg": { "const": "ES256" },
+    "kid": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9._~-]+$"
+    },
+    "typ": { "const": "lmid+jwt" }
+  }
+}

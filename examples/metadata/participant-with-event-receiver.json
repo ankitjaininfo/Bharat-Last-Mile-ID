@@ -1,0 +1,13 @@
+{
+  "domain": "issuer.example",
+  "display_name": "Example Logistics",
+  "roles": ["issuer"],
+  "jwks_uri": "https://issuer.example/.well-known/bharat-last-mile-id.jwks",
+  "versions_supported": [1],
+  "token_types_supported": ["lmid+jwt"],
+  "photo_origins": ["https://issuer.example"],
+  "event_receiver": {
+    "uri": "https://events.issuer.example/lmid/v1/events",
+    "types_supported": ["gate_check_in"]
+  }
+}

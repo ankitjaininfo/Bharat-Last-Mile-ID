@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bharat-last-mile-id:schema:gate-check-in-event:1.0",
+  "title": "Bharat Last-Mile ID Level 2 gate_check_in Event",
+  "description": "CloudEvents structured JSON representation of an LMID Level 2 gate_check_in event.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["specversion", "id", "source", "type", "time", "datacontenttype", "data"],
+  "properties": {
+    "specversion": {
+      "description": "CloudEvents specification version used by this event.",
+      "const": "1.0"
+    },
+    "id": {
+      "description": "Source-unique event identifier retained unchanged across webhook retries.",
+      "$ref": "#/$defs/opaqueId"
+    },
+    "source": {
+      "description": "Canonical HTTPS origin formed from the verifier's bare participant domain and used for public-key discovery.",
+      "$ref": "#/$defs/sourceOrigin"
+    },
+    "type": {
+      "description": "LMID event type asserted by this event.",
+      "const": "gate_check_in"
+    },
+    "time": {
+      "description": "UTC time at which the verifier recorded the successful pass check at the checkpoint.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "datacontenttype": {
+      "description": "Media type of the event data object.",
+      "const": "application/json"
+    },
+    "data": {
+      "description": "Minimal LMID pass and delivery correlation data for the checkpoint observation.",
+      "$ref": "#/$defs/eventData"
+    }
+  },
+  "$defs": {
+    "opaqueId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._~-]+$"
+    },
+    "sourceOrigin": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 261,
+      "pattern": "^https://(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+    },
+    "eventData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass_jti", "deliveries"],
+      "properties": {
+        "pass_jti": {
+          "description": "Exact jti of the successfully verified LMID pass.",
+          "$ref": "#/$defs/opaqueId"
+        },
+        "deliveries": {
+          "description": "Delivery references from the verified pass covered by this checkpoint observation.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/delivery" }
+        }
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref"],
+      "properties": {
+        "ref": {
+          "description": "Exact issuer-scoped delivery reference copied from one deliveries entry in the verified pass.",
+          "$ref": "#/$defs/opaqueId"
+        }
+      }
+    }
+  }
+}

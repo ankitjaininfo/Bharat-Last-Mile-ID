@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+tmp/
+videos/*.mp4
+examples/integration-real-world-example/output/

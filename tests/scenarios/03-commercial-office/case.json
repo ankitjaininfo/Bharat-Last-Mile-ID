@@ -1,0 +1,62 @@
+{
+  "id": "03-commercial-office",
+  "title": "Delivery to a commercial office reception",
+  "description": "Mohammed Irfan presents one delivery for the reception of Sahyadri Analytics on floor 12 of Building 8 in a Gurugram business park. The token includes an optional issuer-provided photo reference.",
+  "verification_time": 1893456900,
+  "header": {
+    "alg": "ES256",
+    "kid": "test-key-01",
+    "typ": "lmid+jwt"
+  },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893463200,
+    "jti": "pass_office_003",
+    "lmid": {
+      "v": 1,
+      "holder": {
+        "name": "Mohammed Irfan",
+        "photo": {
+          "uri": "https://issuer.example/photos/test-holder-003.webp",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      "visit": {
+        "place": {
+          "name": "Sahyadri Business Park",
+          "address": "Building 8, Sahyadri Business Park, DLF Phase 2, Gurugram 122002",
+          "country": "IN",
+          "state": "Haryana",
+          "district": "Gurugram",
+          "city": "Gurugram",
+          "area": "DLF Phase 2",
+          "postal_code": "122002"
+        },
+        "deliveries": [
+          {
+            "ref": "SERVICE-GGN-2026-0003",
+            "building": "Building 8",
+            "floor": "12",
+            "unit": "Sahyadri Analytics Reception"
+          }
+        ]
+      }
+    }
+  },
+  "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6InRlc3Qta2V5LTAxIiwidHlwIjoibG1pZCtqd3QifQ.eyJpc3MiOiJpc3N1ZXIuZXhhbXBsZSIsImlhdCI6MTg5MzQ1NjAwMCwibmJmIjoxODkzNDU2MDAwLCJleHAiOjE4OTM0NjMyMDAsImp0aSI6InBhc3Nfb2ZmaWNlXzAwMyIsImxtaWQiOnsidiI6MSwiaG9sZGVyIjp7Im5hbWUiOiJNb2hhbW1lZCBJcmZhbiIsInBob3RvIjp7InVyaSI6Imh0dHBzOi8vaXNzdWVyLmV4YW1wbGUvcGhvdG9zL3Rlc3QtaG9sZGVyLTAwMy53ZWJwIiwic2hhMjU2IjoiMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJ9fSwidmlzaXQiOnsicGxhY2UiOnsibmFtZSI6IlNhaHlhZHJpIEJ1c2luZXNzIFBhcmsiLCJhZGRyZXNzIjoiQnVpbGRpbmcgOCwgU2FoeWFkcmkgQnVzaW5lc3MgUGFyaywgRExGIFBoYXNlIDIsIEd1cnVncmFtIDEyMjAwMiIsImNvdW50cnkiOiJJTiIsInN0YXRlIjoiSGFyeWFuYSIsImRpc3RyaWN0IjoiR3VydWdyYW0iLCJjaXR5IjoiR3VydWdyYW0iLCJhcmVhIjoiRExGIFBoYXNlIDIiLCJwb3N0YWxfY29kZSI6IjEyMjAwMiJ9LCJkZWxpdmVyaWVzIjpbeyJyZWYiOiJTRVJWSUNFLUdHTi0yMDI2LTAwMDMiLCJidWlsZGluZyI6IkJ1aWxkaW5nIDgiLCJmbG9vciI6IjEyIiwidW5pdCI6IlNhaHlhZHJpIEFuYWx5dGljcyBSZWNlcHRpb24ifV19fX0.xHQPcyTX8TgAW8bUwukwLZJwwstqQOo8ObAjfHD10pohPxEPhrYN8PL47x7Re0TMB5yLaOuT2typ-_aEeV6ArQ",
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 1,
+    "holder_name": "Mohammed Irfan",
+    "photo_status": "not_fetched",
+    "delivery_endpoints": [
+      {
+        "building": "Building 8",
+        "floor": "12",
+        "unit": "Sahyadri Analytics Reception"
+      }
+    ]
+  }
+}

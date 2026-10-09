@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bharat-last-mile-id:schema:pass-payload:1.0",
+  "title": "Bharat Last-Mile ID Level 1 JWT Claims Set",
+  "description": "Structural constraints for the JWT Claims Set carried by an LMID Level 1 pass. The specification defines cross-field time and uniqueness constraints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["iss", "iat", "nbf", "exp", "jti", "lmid"],
+  "properties": {
+    "iss": {
+      "description": "Canonical bare domain name that identifies the issuer and anchors metadata and signing-key discovery.",
+      "$ref": "#/$defs/domainName"
+    },
+    "iat": {
+      "description": "UTC time at which the issuer created the pass, encoded as a JWT NumericDate in seconds.",
+      "$ref": "#/$defs/numericDate"
+    },
+    "nbf": {
+      "description": "Earliest UTC time at which a verifier may accept the pass, encoded as a JWT NumericDate in seconds.",
+      "$ref": "#/$defs/numericDate"
+    },
+    "exp": {
+      "description": "UTC time at or after which a verifier must reject the pass, encoded as a JWT NumericDate in seconds.",
+      "$ref": "#/$defs/numericDate"
+    },
+    "jti": {
+      "description": "Issuer-unique opaque identifier for this pass instance, used for deduplication and status checks.",
+      "$ref": "#/$defs/opaqueId"
+    },
+    "lmid": {
+      "description": "Versioned LMID claims that describe the holder, optional vehicle, destination, and deliveries.",
+      "$ref": "#/$defs/lmid"
+    }
+  },
+  "$defs": {
+    "numericDate": { "type": "integer", "minimum": 0, "maximum": 253402300799 },
+    "domainName": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 253,
+      "pattern": "^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+    },
+    "httpsUri": { "type": "string", "format": "uri", "pattern": "^https://", "maxLength": 512 },
+    "text128": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^(?!\\s)(?!.*\\s$)(?!.*[\\u0000-\\u001F\\u007F-\\u009F\\u2028\\u2029\\u202A-\\u202E\\u2066-\\u2069]).+$"
+    },
+    "text256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^(?!\\s)(?!.*\\s$)(?!.*[\\u0000-\\u001F\\u007F-\\u009F\\u2028\\u2029\\u202A-\\u202E\\u2066-\\u2069]).+$"
+    },
+    "restrictedDestination": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._/#()+&-]{0,63}$"
+    },
+    "opaqueId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._~-]+$"
+    },
+    "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "lmid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["v", "holder", "visit"],
+      "properties": {
+        "v": {
+          "description": "Wire-format version of the LMID claims profile carried in this Level 1 pass, separate from capability levels.",
+          "const": 1
+        },
+        "holder": {
+          "description": "Minimal identity information for the delivery person presenting the pass.",
+          "$ref": "#/$defs/holder"
+        },
+        "vehicle": {
+          "description": "Optional vehicle information associated with this visit.",
+          "$ref": "#/$defs/vehicle"
+        },
+        "visit": {
+          "description": "Common destination and one or more delivery records covered by the pass.",
+          "$ref": "#/$defs/visit"
+        }
+      }
+    },
+    "holder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "description": "Issuer-verified display name of the delivery person.",
+          "$ref": "#/$defs/text128"
+        },
+        "photo": {
+          "description": "Optional integrity-protected photograph reference for visual comparison by the verifier.",
+          "$ref": "#/$defs/photo"
+        }
+      }
+    },
+    "photo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "sha256"],
+      "properties": {
+        "uri": {
+          "description": "Short-lived HTTPS URL from which an authorized verifier can retrieve the holder photograph.",
+          "$ref": "#/$defs/httpsUri"
+        },
+        "sha256": {
+          "description": "Lowercase hexadecimal SHA-256 digest of the exact photograph bytes returned by uri.",
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "vehicle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registration", "country"],
+      "properties": {
+        "registration": {
+          "description": "Vehicle registration mark as supplied and normalized by the issuer.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "pattern": "^[A-Za-z0-9 -]+$"
+        },
+        "country": {
+          "description": "ISO 3166-1 alpha-2 country code for the vehicle registration authority.",
+          "$ref": "#/$defs/countryCode"
+        }
+      }
+    },
+    "placeId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "id"],
+      "properties": {
+        "provider": {
+          "description": "Provider identifier naming the place-ID system; readers ignore unsupported providers.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{1,63}$"
+        },
+        "id": {
+          "description": "Provider-specific place identifier, limited to 256 characters for every provider; values must not be truncated to fit.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "description": "Human-readable name of the property or destination.", "$ref": "#/$defs/text256" },
+        "address": {
+          "description": "Required issuer-supplied address text for display and fallback matching.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!\\s)(?!.*\\s$)(?!.*[\\u0000-\\u001F\\u007F-\\u009F\\u2028\\u2029\\u202A-\\u202E\\u2066-\\u2069]).+$"
+        },
+        "country": { "description": "ISO 3166-1 alpha-2 country code for the destination.", "$ref": "#/$defs/countryCode" },
+        "state": { "description": "State or union territory name for the destination.", "$ref": "#/$defs/text128" },
+        "district": { "description": "Administrative district name for the destination.", "$ref": "#/$defs/text128" },
+        "city": { "description": "City, town, or locality name for the destination.", "$ref": "#/$defs/text128" },
+        "area": { "description": "Neighbourhood, sector, layout, or local area name for the destination.", "$ref": "#/$defs/text128" },
+        "street": { "description": "Street, road, lane, or access-road name for the destination.", "$ref": "#/$defs/text256" },
+        "landmark": { "description": "Optional landmark that helps a human identify the destination.", "$ref": "#/$defs/text256" },
+        "postal_code": { "description": "Postal routing code as text, including leading zeroes when present.", "type": "string", "minLength": 1, "maxLength": 32 },
+        "place_ids": {
+          "description": "Provider-qualified identifiers that help independently identify or reconcile the destination.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/placeId" }
+        }
+      },
+      "required": ["address"]
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref"],
+      "properties": {
+        "ref": {
+          "description": "Issuer-scoped tracking reference for this delivery, such as an AWB, order ID, delivery ID, or service ID.",
+          "$ref": "#/$defs/opaqueId"
+        },
+        "building": { "description": "Building, tower, house name, house number, or separately named structure for this delivery endpoint.", "$ref": "#/$defs/text128" },
+        "block": { "description": "Block, phase, cluster, wing, or comparable subdivision for this delivery endpoint.", "$ref": "#/$defs/text128" },
+        "floor": { "description": "Restricted floor or level identifier for this delivery endpoint.", "$ref": "#/$defs/restrictedDestination" },
+        "unit": {
+          "description": "Restricted final endpoint identifier or customer-entered compound label, including comma-separated building and unit components.",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._/#(),+&-]{0,63}$"
+        }
+      },
+      "anyOf": [
+        { "required": ["building"] },
+        { "required": ["block"] },
+        { "required": ["unit"] }
+      ]
+    },
+    "visit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["place", "deliveries"],
+      "properties": {
+        "place": {
+          "description": "Common gate-level society, community, complex, campus, or property data for the visit.",
+          "$ref": "#/$defs/place"
+        },
+        "deliveries": {
+          "description": "One to thirty-two deliveries assigned to the holder for the common place.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": { "$ref": "#/$defs/delivery" }
+        }
+      }
+    }
+  }
+}

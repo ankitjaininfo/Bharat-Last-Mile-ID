@@ -1,0 +1,30 @@
+{
+  "iss": "issuer.example",
+  "iat": 1788260400,
+  "nbf": 1788260400,
+  "exp": 1788263100,
+  "jti": "p_house_8kP21m",
+  "lmid": {
+    "v": 1,
+    "holder": {
+      "name": "Meena Kumari"
+    },
+    "visit": {
+      "place": {
+        "address": "13B, 2nd Cross, Indiranagar, Bengaluru 560038",
+        "country": "IN",
+        "state": "Karnataka",
+        "city": "Bengaluru",
+        "area": "Indiranagar",
+        "street": "2nd Cross",
+        "postal_code": "560038"
+      },
+      "deliveries": [
+        {
+        "ref": "AWB-BLR-2026-0013B",
+        "building": "13B"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "05-multiple-buildings",
+  "title": "Courier batch across multiple buildings and floors",
+  "description": "Arjun Das presents four deliveries for two towers in Ganga Heights in Kolkata. The pass demonstrates flattened delivery-specific destination fields and provider-qualified place IDs at a common property.",
+  "verification_time": 1893457800,
+  "header": { "alg": "ES256", "kid": "test-key-01", "typ": "lmid+jwt" },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893484800,
+    "jti": "pass_buildings_005",
+    "lmid": {
+      "v": 1,
+      "holder": { "name": "Arjun Das" },
+      "vehicle": { "registration": "WB 24 R 5566", "country": "IN" },
+      "visit": {
+        "place": {
+      "name": "Ganga Heights",
+      "address": "Ganga Heights, New Town, Kolkata 700156",
+          "country": "IN",
+          "state": "West Bengal",
+          "district": "North 24 Parganas",
+          "city": "Kolkata",
+          "area": "New Town",
+          "postal_code": "700156",
+          "place_ids": [
+            { "provider": "digipin", "id": "4FK59K2L3T" },
+            { "provider": "openstreetmap", "id": "way/123456789" }
+          ]
+        },
+        "deliveries": [
+          { "ref": "AWB-CCU-2026-A0602", "building": "Tower A", "floor": "6", "unit": "602" },
+          { "ref": "AWB-CCU-2026-A1104", "building": "Tower A", "floor": "11", "unit": "1104" },
+          { "ref": "AWB-CCU-2026-B0013A", "building": "Tower B", "floor": "13", "unit": "13A" },
+          { "ref": "AWB-CCU-2026-B-G7", "building": "Tower B", "floor": "Ground Floor", "unit": "Shop G-7" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 4,
+    "holder_name": "Arjun Das",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      { "building": "Tower A", "floor": "6", "unit": "602" },
+      { "building": "Tower A", "floor": "11", "unit": "1104" },
+      { "building": "Tower B", "floor": "13", "unit": "13A" },
+      { "building": "Tower B", "floor": "Ground Floor", "unit": "Shop G-7" }
+    ]
+  }
+}

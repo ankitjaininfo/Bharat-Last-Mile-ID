@@ -1,0 +1,53 @@
+{
+  "id": "04-independent-house",
+  "title": "Delivery to an independent house with a building endpoint",
+  "description": "Meena Kumari carries one delivery to house 13B on 2nd Cross in Indiranagar, Bengaluru. The place carries the address context, and the delivery entry carries its AWB reference and 13B as its building endpoint.",
+  "verification_time": 1893456600,
+  "header": {
+    "alg": "ES256",
+    "kid": "test-key-01",
+    "typ": "lmid+jwt"
+  },
+  "payload": {
+    "iss": "issuer.example",
+    "iat": 1893456000,
+    "nbf": 1893456000,
+    "exp": 1893461400,
+    "jti": "pass_house_004",
+    "lmid": {
+      "v": 1,
+      "holder": {
+        "name": "Meena Kumari"
+      },
+      "visit": {
+        "place": {
+          "address": "13B, 2nd Cross, Indiranagar, Bengaluru 560038",
+          "country": "IN",
+          "state": "Karnataka",
+          "city": "Bengaluru",
+          "area": "Indiranagar",
+          "street": "2nd Cross",
+          "postal_code": "560038"
+        },
+        "deliveries": [
+          {
+            "ref": "AWB-BLR-2026-0013B",
+            "building": "13B"
+          }
+        ]
+      }
+    }
+  },
+  "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6InRlc3Qta2V5LTAxIiwidHlwIjoibG1pZCtqd3QifQ.eyJpc3MiOiJpc3N1ZXIuZXhhbXBsZSIsImlhdCI6MTg5MzQ1NjAwMCwibmJmIjoxODkzNDU2MDAwLCJleHAiOjE4OTM0NjE0MDAsImp0aSI6InBhc3NfaG91c2VfMDA0IiwibG1pZCI6eyJ2IjoxLCJob2xkZXIiOnsibmFtZSI6Ik1lZW5hIEt1bWFyaSJ9LCJ2aXNpdCI6eyJwbGFjZSI6eyJhZGRyZXNzIjoiMTNCLCAybmQgQ3Jvc3MsIEluZGlyYW5hZ2FyLCBCZW5nYWx1cnUgNTYwMDM4IiwiY291bnRyeSI6IklOIiwic3RhdGUiOiJLYXJuYXRha2EiLCJjaXR5IjoiQmVuZ2FsdXJ1IiwiYXJlYSI6IkluZGlyYW5hZ2FyIiwic3RyZWV0IjoiMm5kIENyb3NzIiwicG9zdGFsX2NvZGUiOiI1NjAwMzgifSwiZGVsaXZlcmllcyI6W3sicmVmIjoiQVdCLUJMUi0yMDI2LTAwMTNCIiwiYnVpbGRpbmciOiIxM0IifV19fX0.4-_uZR7o9y9iiGTvOLJJGM6DoOre9t_llvWqpX6WM-UB378fPPJt3UatpHG45wbH5bdlGCdCIGQrGIkblxVwvQ",
+  "expected": {
+    "result": "signature_verified",
+    "delivery_count": 1,
+    "holder_name": "Meena Kumari",
+    "photo_status": "absent",
+    "delivery_endpoints": [
+      {
+        "building": "13B"
+      }
+    ]
+  }
+}
